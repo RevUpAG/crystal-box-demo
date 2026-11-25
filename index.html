@@ -297,6 +297,29 @@ form{display:grid;grid-template-columns:1fr 1fr;gap:18px}
 .done dt{color:var(--mute)}
 .done dd{overflow-wrap:anywhere;white-space:pre-line}
 
+/* Sheets slide in from the right, like a door panel */
+html:has(dialog[open]){overflow:hidden}
+.sheet{width:min(680px,100%);max-width:none;height:100dvh;max-height:none;margin:0 0 0 auto;padding:0;border:0;background:var(--white);color:var(--ink);overflow:auto;overscroll-behavior:contain;scroll-padding-top:132px}
+.sheet[open]{animation:sheet .55s var(--ease)}
+.sheet::backdrop{background:rgba(13,19,22,.62);animation:dim .4s}
+@keyframes sheet{from{transform:translateX(100%)}}
+@keyframes dim{from{opacity:0}}
+.sh{position:sticky;top:0;z-index:2;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:18px clamp(18px,4vw,44px);background:var(--white);border-bottom:1px solid var(--line)}
+.sh h2{font-size:clamp(27px,3vw,38px)}
+.x{min-height:48px;padding:0 4px;border:0;background:none;font-weight:500;cursor:pointer;text-decoration:underline;text-decoration-color:var(--cyan);text-underline-offset:6px}
+.sb{padding:26px clamp(18px,4vw,44px) 48px}
+.sb>p+p{margin-top:12px}
+.sb form{margin-top:26px}
+.sent{margin-top:28px;padding:26px;background:var(--tint);border-top:3px solid var(--cyan)}
+.sent h3{font-size:28px;font-weight:300}
+.sent p{margin-top:8px}
+.legal-t h3{margin-top:26px;font-size:19px}
+.legal-t p{margin-top:8px}
+.legal-t>p:first-child{margin-top:0}
+.legal-t ul{margin-top:8px;padding-left:20px;list-style:disc}
+html:not(.js) .sheet{display:block;position:static;width:100%;height:auto;animation:none}
+html:not(.js) .x{display:none}
+
 /* Footer: the sheet's title block */
 .ft{padding-block:clamp(48px,6vw,96px) 0}
 .ft .big{font-size:clamp(28px,4vw,62px);font-weight:200;letter-spacing:-.03em;line-height:1.08;max-width:20ch;text-wrap:balance}
@@ -436,7 +459,7 @@ form{display:grid;grid-template-columns:1fr 1fr;gap:18px}
     <a href="#professionals">For Professionals</a>
     <a href="#about">About</a>
     <a href="#quote">Contact</a>
-    <a class="deal" href="https://crystalboxgroup.com/become-a-dealer/" target="_blank" rel="noopener">Become a Dealer</a>
+    <a class="deal" href="#dealer">Become a Dealer</a>
   </nav>
   <a class="tel" href="tel:+13058774981" data-place="header">+1 (305) 877-4981</a>
   <a class="btn" href="#quote">Get a Quote</a>
@@ -622,7 +645,7 @@ form{display:grid;grid-template-columns:1fr 1fr;gap:18px}
     </div>
   </div>
   <div>
-    <form id="form" novalidate>
+    <form id="form" novalidate data-event="quote_submit">
       <div class="f"><label for="name">Name</label><input id="name" name="name" autocomplete="name" required aria-describedby="e-name"><p class="e" id="e-name"></p></div>
       <div class="f"><label for="company">Company <i>(optional)</i></label><input id="company" name="company" autocomplete="organization"></div>
       <div class="f"><label for="email">Email</label><input id="email" name="email" type="email" autocomplete="email" required aria-describedby="e-email"><p class="e" id="e-email"></p></div>
@@ -635,9 +658,9 @@ form{display:grid;grid-template-columns:1fr 1fr;gap:18px}
       <div class="f"><label for="openings">Openings <i>(optional)</i></label><input id="openings" name="openings" type="number" inputmode="numeric" min="1" placeholder="Approx. number"></div>
       <div class="f w"><label for="message">Message <i>(optional)</i></label><textarea id="message" name="message" rows="3"></textarea></div>
       <div class="f w"><label for="plans">Plans <i>(optional)</i></label><input id="plans" name="plans" type="file" multiple accept=".pdf,.dwg,.dxf,.zip,image/*"><p class="n">Placeholder: file storage is connected at launch.</p></div>
-      <div class="send"><button class="btn" type="submit">Get a Quote</button><p>By submitting this form, I agree to the <a href="https://crystalboxgroup.com/privacy-policy/" target="_blank" rel="noopener">Privacy Policy</a> and <a href="https://crystalboxgroup.com/terms-conditions/" target="_blank" rel="noopener">Terms &amp; Conditions</a>.</p></div>
-      <p class="fail" id="fail" role="alert" hidden>Your request was not sent. Check your connection and try again, or call +1 (305) 877-4981.</p>
-      <p class="cfg" id="cfg">Demo: form destination not connected, nothing is sent. At launch: info@crystalboxgroup.com.</p>
+      <div class="send"><button class="btn" type="submit">Get a Quote</button><p>By submitting this form, I agree to the <a href="#privacy">Privacy Policy</a> and <a href="#terms">Terms &amp; Conditions</a>.</p></div>
+      <p class="fail" role="alert" hidden>Your request was not sent. Check your connection and try again, or call +1 (305) 877-4981.</p>
+      <p class="cfg">Demo: form destination not connected, nothing is sent. At launch: info@crystalboxgroup.com.</p>
     </form>
     <div class="done" id="done" tabindex="-1" hidden>
       <h3 id="done-h"></h3>
@@ -655,11 +678,110 @@ form{display:grid;grid-template-columns:1fr 1fr;gap:18px}
   <div class="block">
     <div><img src="img/logo.png" width="270" height="190" loading="lazy" alt="Crystal Box Impact Windows &amp; Doors"></div>
     <div class="c"><h2>Crystal Box Group</h2><address>999 Brickell Ave, Suite 560<br>Miami, FL 33131</address><a href="tel:+13058774981" data-place="footer">+1 (305) 877-4981</a><br><a href="mailto:info@crystalboxgroup.com">info@crystalboxgroup.com</a></div>
-    <div><h2>Work together</h2><ul><li><a href="#quote">Get a Quote</a></li><li><a href="#products">Download Brochures</a></li><li><a href="https://crystalboxgroup.com/become-a-dealer/" target="_blank" rel="noopener">Become a Dealer</a></li><li><a href="https://crystalboxgroup.com/work-with-us/" target="_blank" rel="noopener">Work With Us</a></li></ul></div>
+    <div><h2>Work together</h2><ul><li><a href="#quote">Get a Quote</a></li><li><a href="#products">Download Brochures</a></li><li><a href="#dealer">Become a Dealer</a></li><li><a href="#work">Work With Us</a></li></ul></div>
     <div><h2>Follow</h2><ul><li><a href="https://www.instagram.com/crystalboxgroup/" target="_blank" rel="noopener">Instagram</a></li><li><a href="https://www.facebook.com/crystalboximpact" target="_blank" rel="noopener">Facebook</a></li><li><a href="https://www.linkedin.com/company/crystal-box-group/" target="_blank" rel="noopener">LinkedIn</a></li></ul></div>
   </div>
-  <div class="legal"><span>© 2026 Crystal Box Group</span><a href="https://crystalboxgroup.com/privacy-policy/" target="_blank" rel="noopener">Privacy Policy</a><a href="https://crystalboxgroup.com/terms-conditions/" target="_blank" rel="noopener">Terms and Conditions</a></div>
+  <div class="legal"><span>© 2026 Crystal Box Group</span><a href="#privacy">Privacy Policy</a><a href="#terms">Terms and Conditions</a></div>
 </div></footer>
+
+<!-- SHEETS: pages that used to open on the old site. Texts and fields from crystalboxgroup.com. Links: #dealer, #work, #privacy, #terms -->
+<dialog class="sheet" id="dealer" aria-labelledby="dealer-h">
+  <div class="sh"><h2 id="dealer-h">Become a Dealer</h2><button type="button" class="x">Close</button></div>
+  <div class="sb">
+    <p>At Crystal Box Group, we believe strong dealer relationships are built on trust, performance, and shared ambition. Our partners gain access to premium products, strategic support, and a team committed to helping them win.</p>
+    <form novalidate data-event="dealer_submit">
+      <div class="f"><label for="d-name">Full name</label><input id="d-name" name="name" autocomplete="name" required aria-describedby="e-d-name"><p class="e" id="e-d-name"></p></div>
+      <div class="f"><label for="d-company">Company name</label><input id="d-company" name="company" autocomplete="organization" required aria-describedby="e-d-company"><p class="e" id="e-d-company"></p></div>
+      <div class="f"><label for="d-email">Email</label><input id="d-email" name="email" type="email" autocomplete="email" required aria-describedby="e-d-email"><p class="e" id="e-d-email"></p></div>
+      <div class="f"><label for="d-phone">Phone</label><input id="d-phone" name="phone" type="tel" autocomplete="tel" required aria-describedby="e-d-phone"><p class="e" id="e-d-phone"></p></div>
+      <div class="f"><label for="d-website">Company website</label><input id="d-website" name="website" inputmode="url" autocomplete="url" required aria-describedby="e-d-website"><p class="e" id="e-d-website"></p></div>
+      <div class="f"><label for="d-place">City / State</label><input id="d-place" name="place" required aria-describedby="e-d-place"><p class="e" id="e-d-place"></p></div>
+      <div class="f w"><label for="d-country">Country</label><input id="d-country" name="country" autocomplete="country-name" required aria-describedby="e-d-country"><p class="e" id="e-d-country"></p></div>
+      <div class="f w"><label for="d-why">Why are you interested in becoming a Crystal Box Group dealer?</label><textarea id="d-why" name="why" rows="4" required aria-describedby="e-d-why"></textarea><p class="e" id="e-d-why"></p></div>
+      <div class="send"><button class="btn" type="submit">Become a Dealer</button><p>By submitting this form, I agree to the <a href="#privacy">Privacy Policy</a> and <a href="#terms">Terms &amp; Conditions</a>.</p></div>
+      <p class="fail" role="alert" hidden>Your request was not sent. Check your connection and try again, or call +1 (305) 877-4981.</p>
+      <p class="cfg">Demo: form destination not connected, nothing is sent. At launch: info@crystalboxgroup.com.</p>
+    </form>
+    <div class="sent" tabindex="-1" hidden><h3></h3><p></p></div>
+  </div>
+</dialog>
+<dialog class="sheet" id="work" aria-labelledby="work-h">
+  <div class="sh"><h2 id="work-h">Work With Us</h2><button type="button" class="x">Close</button></div>
+  <div class="sb">
+    <p>At Crystal Box, people are our greatest asset. We foster a collaborative environment where craftsmanship, innovation, and attention to detail guide everything we do.</p>
+    <p>If you’re passionate about quality and want to grow with a team committed to excellence, we’d love to hear from you. Please submit your resume with a brief note about your experience and professional goals.</p>
+    <form novalidate data-event="work_submit">
+      <div class="f"><label for="w-name">Full name</label><input id="w-name" name="name" autocomplete="name" required aria-describedby="e-w-name"><p class="e" id="e-w-name"></p></div>
+      <div class="f"><label for="w-phone">Phone</label><input id="w-phone" name="phone" type="tel" autocomplete="tel" required aria-describedby="e-w-phone"><p class="e" id="e-w-phone"></p></div>
+      <div class="f w"><label for="w-email">Email</label><input id="w-email" name="email" type="email" autocomplete="email" required aria-describedby="e-w-email"><p class="e" id="e-w-email"></p></div>
+      <div class="f w"><label for="w-message">Message <i>(optional)</i></label><textarea id="w-message" name="message" rows="4"></textarea></div>
+      <div class="f w"><label for="w-resume">Resume</label><input id="w-resume" name="resume" type="file" accept=".pdf,.doc,.docx" required aria-describedby="e-w-resume"><p class="e" id="e-w-resume"></p><p class="n">Placeholder: file storage is connected at launch.</p></div>
+      <div class="send"><button class="btn" type="submit">Send my resume</button><p>By submitting this form, I agree to the <a href="#privacy">Privacy Policy</a> and <a href="#terms">Terms &amp; Conditions</a>.</p></div>
+      <p class="fail" role="alert" hidden>Your request was not sent. Check your connection and try again, or call +1 (305) 877-4981.</p>
+      <p class="cfg">Demo: form destination not connected, nothing is sent. At launch: info@crystalboxgroup.com.</p>
+    </form>
+    <div class="sent" tabindex="-1" hidden><h3></h3><p></p></div>
+  </div>
+</dialog>
+<dialog class="sheet" id="privacy" aria-labelledby="privacy-h">
+  <div class="sh"><h2 id="privacy-h">Privacy Policy</h2><button type="button" class="x">Close</button></div>
+  <div class="sb">
+    <div class="legal-t"><p>Crystal Box Group respects your privacy and is committed to protecting the personal information you share with us through this website.</p>
+    <h3>Information We Collect</h3>
+    <p>We may collect personal information when you voluntarily submit it through our website forms, including but not limited to:</p>
+    <ul><li>Name</li>
+    <li>Company name</li>
+    <li>Email address</li>
+    <li>Phone number</li>
+    <li>Project location and details</li>
+    <li>Files or documents you choose to upload</li></ul>
+    <p>We do not collect payment or financial information through this website.</p>
+    <h3>How We Use Your Information</h3>
+    <p>The information collected is used solely to:</p>
+    <ul><li>Respond to inquiries and quote requests</li>
+    <li>Evaluate project requirements</li>
+    <li>Communicate with you regarding our services</li>
+    <li>Improve our website and user experience</li></ul>
+    <p>We do not sell, rent, or trade your personal information.</p>
+    <h3>Information Sharing</h3>
+    <p>Personal information may be shared only with trusted partners or service providers when necessary to evaluate or execute a project, and solely for business-related purposes. Information is not shared for marketing or advertising by third parties.</p>
+    <h3>Data Security</h3>
+    <p>Crystal Box Group implements reasonable administrative and technical measures to safeguard personal information submitted through this website. However, no method of data transmission or storage can be guaranteed to be 100 percent secure.</p>
+    <h3>Cookies &amp; Analytics</h3>
+    <p>This website may use cookies or analytics tools to collect non-identifiable information such as browser type, pages visited, and general usage data. This information is used to improve website functionality and performance.</p>
+    <h3>Third-Party Links</h3>
+    <p>This website may contain links to third-party websites. Crystal Box Group is not responsible for the privacy practices or content of external sites.</p>
+    <h3>Your Consent</h3>
+    <p>By using this website and submitting your information, you consent to this Privacy Policy.</p>
+    <h3>Updates to This Policy</h3>
+    <p>Crystal Box Group reserves the right to update or modify this Privacy Policy at any time. Changes will be posted on this page.</p>
+    <h3>Contact</h3>
+    <p>If you have questions regarding this Privacy Policy or how your information is used, please contact Crystal Box directly.</p></div>
+  </div>
+</dialog>
+<dialog class="sheet" id="terms" aria-labelledby="terms-h">
+  <div class="sh"><h2 id="terms-h">Terms &amp; Conditions</h2><button type="button" class="x">Close</button></div>
+  <div class="sb">
+    <div class="legal-t"><p>The information provided on this website is for general informational purposes only. Content, descriptions, images, and references are intended to present Crystal Box Group services and capabilities and do not constitute a binding offer, contract, or guarantee. All services are subject to project evaluation, site conditions, and formal agreement.</p>
+    <h3>Custom Manufacturing</h3>
+    <p>All Crystal Box Group windows and doors are custom designed and manufactured for each individual project. Specifications, dimensions, materials, finishes, and performance characteristics may vary based on architectural requirements, site conditions, and client selections. No two projects are identical. Crystal Box Group products are distributed and installed in accordance with the terms and specifications of ES Windows, ensuring compliance with manufacturer requirements and warranty conditions.</p>
+    <h3>Product Performance &amp; Code Compliance</h3>
+    <p>Impact resistance, performance ratings, and code compliance are determined based on product configuration, installation conditions, and applicable Florida and local building codes. Final performance and compliance are confirmed during project review, permitting, and approval processes. All Crystal Box Group installations comply with ES Windows standards where applicable.</p>
+    <h3>Installation &amp; Site Conditions</h3>
+    <p>Installation methods, timelines, and final outcomes may vary depending on site conditions, structural readiness, accessibility, coordination with other trades, and external factors beyond Crystal Box Group’s control. Crystal Box Group is not responsible for delays or issues caused by conditions outside its scope of work.</p>
+    <h3>Lead Times &amp; Availability</h3>
+    <p>Any estimated timelines or lead times provided are for planning purposes only and may change due to manufacturing schedules, material availability, project complexity, or unforeseen circumstances.</p>
+    <h3>Payments &amp; Transactions</h3>
+    <p>Crystal Box Group does not accept payments through this website. All pricing, contracts, and payment terms are discussed and finalized directly with our team through formal documentation.</p>
+    <h3>Intellectual Property</h3>
+    <p>All content on this website, including text, images, designs, logos, and visual materials, is the property of Crystal Box Group or used with permission. Unauthorized use, reproduction, or distribution is prohibited without prior written consent.</p>
+    <h3>Limitation of Liability</h3>
+    <p>Crystal Box Group shall not be held liable for any direct, indirect, incidental, or consequential damages arising from the use of this website or reliance on information presented herein.</p>
+    <h3>Updates &amp; Modifications</h3>
+    <p>Crystal Box Group reserves the right to update or modify these Terms &amp; Conditions at any time without prior notice. Continued use of the website constitutes acceptance of any changes.</p>
+    <p>Information may be requested at info@crystalboxgroup.com</p></div>
+  </div>
+</dialog>
 
 <div class="dock"><a href="tel:+13058774981" data-place="dock"><svg width="20" height="20" aria-hidden="true"><use href="#ph"/></svg>Call</a><a href="#quote">Get a Quote</a></div>
 
@@ -698,7 +820,7 @@ const menu = on => { nav.classList.toggle('on', on); burger.setAttribute('aria-e
 burger.addEventListener('click', () => menu(!nav.classList.contains('on')));
 nav.addEventListener('click', e => e.target.closest('a') && menu(false));
 document.addEventListener('keydown', e => { if (e.key === 'Escape' && nav.classList.contains('on')) { menu(false); burger.focus(); } });
-const links = $$('a[href^="#"]', nav);
+const links = $$('a[href^="#"]:not(.deal)', nav);
 new Set(links.map(a => a.hash)).forEach(h => new IntersectionObserver(es => es.forEach(e => links.forEach(a => a.hash === h && (e.isIntersecting ? a.setAttribute('aria-current', 'true') : a.removeAttribute('aria-current')))), { rootMargin: '-45% 0px -50%' }).observe($(h)));
 
 /* ---- Who we work with: one sash open at a time ---- */
@@ -774,34 +896,66 @@ $$('.drift').forEach(el => {
 /* ---- Mobile bar leaves while the form is on screen ---- */
 new IntersectionObserver(es => $('.dock').classList.toggle('off', es[0].isIntersecting), { rootMargin: '0px 0px -35%' }).observe($('#quote'));
 
-/* ---- Quote form ---- */
+/* ---- Forms: one validator and one sender for quote, dealer and work ---- */
+const MSG = { name: 'Add your name.', email: 'Add a valid email, like name@studio.com.', phone: 'Add a phone number with area code.', role: 'Select your role.', category: 'Select a category.', type: 'Select a type.', city: 'Add the project city.', company: 'Add your company name.', website: 'Add your company website.', place: 'Add your city and state.', country: 'Add your country.', why: 'Tell us why you are interested.', resume: 'Attach your resume.' };
+const note = el => document.getElementById(el.getAttribute('aria-describedby'));
+const valid = el => el.type === 'tel' ? el.value.replace(/\D/g, '').length >= 10 : el.value.trim() !== '' && el.checkValidity();
+function clear(el) { el.removeAttribute('aria-invalid'); if (note(el)) note(el).textContent = ''; }
+function check(el) { if (valid(el)) { clear(el); return true; } el.setAttribute('aria-invalid', 'true'); note(el).textContent = MSG[el.name]; return false; }
+$$('.cfg').forEach(p => p.hidden = !!FORM_ENDPOINT);
+function wire(form, info, sent) {
+  const must = $$('[required]', form), btn = $('button[type=submit]', form), label = btn.textContent, fail = $('.fail', form);
+  must.forEach(el => el.addEventListener('input', () => el.hasAttribute('aria-invalid') && valid(el) && clear(el)));
+  form.addEventListener('submit', async e => {
+    e.preventDefault();
+    const bad = must.filter(el => !check(el));
+    if (bad[0]) { bad[0].focus(); return; }
+    const d = new FormData(form), v = k => String(d.get(k) || '').trim();
+    d.append('form', form.dataset.event);
+    fail.hidden = true;
+    if (FORM_ENDPOINT) {
+      btn.disabled = true; btn.textContent = 'Sending…';
+      let ok = false;
+      try { ok = (await fetch(FORM_ENDPOINT, { method: 'POST', body: d, headers: { Accept: 'application/json' } })).ok; } catch { /* shown below */ }
+      btn.disabled = false; btn.textContent = label;
+      if (!ok) { fail.hidden = false; return; }
+    }
+    track(form.dataset.event, info(v));
+    form.hidden = true;
+    sent(v, `Thank you, ${v('name').split(' ')[0]}.`);
+  });
+}
 const form = $('#form'), done = $('#done');
-$('#cfg').hidden = !!FORM_ENDPOINT;
-const MSG = { name: 'Add your name.', email: 'Add a valid email, like name@studio.com.', phone: 'Add a phone number with area code.', role: 'Select your role.', category: 'Select a category.', type: 'Select a type.', city: 'Add the project city.' };
-const valid = el => el.id === 'phone' ? el.value.replace(/\D/g, '').length >= 10 : el.value.trim() !== '' && el.checkValidity();
-function clear(el) { el.removeAttribute('aria-invalid'); const p = $('#e-' + el.id); if (p) p.textContent = ''; }
-function check(el) { if (valid(el)) { clear(el); return true; } el.setAttribute('aria-invalid', 'true'); $('#e-' + el.id).textContent = MSG[el.id]; return false; }
-$$('[required]', form).forEach(el => el.addEventListener('input', () => el.hasAttribute('aria-invalid') && valid(el) && clear(el)));
-form.addEventListener('submit', async e => {
-  e.preventDefault();
-  const bad = $$('[required]', form).filter(el => !check(el));
-  if (bad[0]) { bad[0].focus(); return; }
-  const btn = $('button[type=submit]', form), d = new FormData(form), v = k => String(d.get(k) || '').trim();
-  $('#fail').hidden = true;
-  if (FORM_ENDPOINT) {
-    btn.disabled = true; btn.textContent = 'Sending…';
-    let ok = false;
-    try { ok = (await fetch(FORM_ENDPOINT, { method: 'POST', body: d, headers: { Accept: 'application/json' } })).ok; } catch { /* shown below */ }
-    btn.disabled = false; btn.textContent = 'Get a Quote';
-    if (!ok) { $('#fail').hidden = false; return; }
-  }
-  track('quote_submit', { role: v('role'), project_category: v('category'), project_type: v('type'), timeline: v('timeline'), openings: v('openings') });
-  $('#done-h').textContent = `Thank you, ${v('name').split(' ')[0]}.`;
+wire(form, v => ({ role: v('role'), project_category: v('category'), project_type: v('type'), timeline: v('timeline'), openings: v('openings') }), (v, hi) => {
+  $('#done-h').textContent = hi;
   $('#done-p').textContent = FORM_ENDPOINT ? 'Your request was sent. A Crystal Box specialist will contact you to discuss your needs.' : 'This is the confirmation your clients will see. Demo mode: nothing was sent.';
   $('#done-l').replaceChildren(...[['Role', 'role'], ['Project', 'category'], ['Type', 'type'], ['City', 'city'], ['Timeline', 'timeline'], ['Openings', 'openings'], ['Message', 'message']].filter(([, k]) => v(k)).map(([t, k]) => { const r = document.createElement('div'), dt = document.createElement('dt'), dd = document.createElement('dd'); dt.textContent = t; dd.textContent = v(k); r.append(dt, dd); return r; }));
-  form.hidden = true; done.hidden = false; done.focus({ preventScroll: true }); done.scrollIntoView({ block: 'center' });
+  done.hidden = false; done.focus({ preventScroll: true }); done.scrollIntoView({ block: 'center' });
 });
 $('#again').addEventListener('click', () => { form.reset(); $$('#sched input').forEach(i => i.checked = false); reqLabel(); done.hidden = true; form.hidden = false; $('#name').focus(); });
+$$('.sheet form').forEach(f => wire(f, () => ({}), (v, hi) => {
+  const box = $('.sent', f.parentNode);
+  $('h3', box).textContent = hi;
+  $('p', box).textContent = FORM_ENDPOINT ? 'Your request was sent to Crystal Box.' : 'This is the confirmation people will see. Demo mode: nothing was sent.';
+  box.hidden = false; box.focus();
+}));
+
+/* ---- Sheets: opened by their #hash, so the Back button closes them and never leaves the page ---- */
+const sheets = $$('.sheet'), stack = [];
+function sync() {
+  const d = sheets.find(x => '#' + x.id === location.hash);
+  if (d && !d.open) { stack.push(d); d.showModal(); d.scrollTop = 0; return; }
+  while (stack.length && stack.at(-1) !== d) stack.pop().close();
+}
+sheets.forEach(d => {
+  $('.x', d).addEventListener('click', () => d.close());
+  d.addEventListener('click', e => e.target === d && d.close());
+  d.addEventListener('close', () => {
+    const i = stack.indexOf(d); if (i >= 0) stack.splice(i, 1);
+    if (location.hash === '#' + d.id) history.replaceState(null, '', stack.length ? '#' + stack.at(-1).id : location.pathname + location.search);
+  });
+});
+addEventListener('hashchange', sync); sync();
 </script>
 </body>
 </html>

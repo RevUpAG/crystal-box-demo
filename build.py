@@ -26,6 +26,8 @@ for n in ['123 NoMi Building', '2905 Washington', 'Casa Carrera', 'Casa Bahia', 
 for q in ['I love that everything is custom and comes with installation so design is never affected.', 'It’s refreshing to work with a company that pays attention to design and quality.', 'The team is always there to answer questions and help us make decisions during the quoting process so I can offer my clients the best quality and price to the homes they are building.']:
     assert q in body, q
 assert len(re.findall('<h1', body)) == 1
+old = re.findall(r'href="https://crystalboxgroup\.com/(?!wp-content/)[^"]+"', body.split('<body>')[1])
+assert not old, ('link leaves the demo', old)
 assert 'condominium' not in body and 'ending confirmation' not in body and 'noindex' in h and 'canonical" href="https://crystalboxgroup.com/"' in h
 assert len(re.findall(r'<a data-pdf="[A-Z][^"]+" href="https://crystalboxgroup.com/[^"]+\.pdf"', body)) == 8
 json.loads(re.search(r'ld\+json">(.*?)</script>', h, re.S).group(1))
