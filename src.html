@@ -12,8 +12,8 @@
 <meta property="og:site_name" content="Crystal Box Group">
 <meta property="og:title" content="Crystal Box Group">
 <meta property="og:description" content="Impact Windows and Doors. Custom. Engineered. Installed.">
-<meta property="og:image" content="https://revupag.github.io/crystal-box-demo/img/share.jpg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Crystal Box logo beside a modern home with large sliding glass doors">
+<meta property="og:image" content="https://revupag.github.io/crystal-box-demo/img/share-2.jpg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Crystal Box logo beside Villa Escondida, a white home with floor-to-ceiling glass">
 <meta property="og:locale" content="en_US">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" type="image/png" href="img/icon.png">
@@ -114,8 +114,9 @@ button,input,select,textarea{font:inherit;color:inherit}
 
 /* Hero: the drawing slides open and the building is behind it */
 .hero{position:relative;display:grid;align-items:end;min-height:min(calc(100svh - var(--hd) - 34px),920px);background:#181f23;color:#fff;overflow:clip}
-.hero>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:60% 42%}
-.hero::before{content:"";position:absolute;inset:0;z-index:2;background:radial-gradient(105% 110% at 0 100%,rgba(13,19,22,.82) 0,rgba(13,19,22,.62) 42%,rgba(13,19,22,.34) 64%,rgba(13,19,22,0) 88%),linear-gradient(to top,rgba(13,19,22,.7) 0,rgba(13,19,22,.3) 30%,rgba(13,19,22,0) 58%)}
+.hero>img,.hero>video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hero>video::-webkit-media-controls-start-playback-button{display:none!important}
+.hero::before{content:"";position:absolute;inset:0;z-index:2;background:radial-gradient(105% 110% at 0 100%,rgba(13,19,22,.82) 0,rgba(13,19,22,.62) 42%,rgba(13,19,22,.34) 64%,rgba(13,19,22,0) 88%),linear-gradient(to top,rgba(13,19,22,.7) 0,rgba(13,19,22,.3) 30%,rgba(13,19,22,0) 58%),linear-gradient(rgba(13,19,22,.3),rgba(13,19,22,.3))}
 .cad{z-index:1;animation:slide-open 1.9s 1s cubic-bezier(.72,0,.16,1) both}
 .stile{position:absolute;inset:0;z-index:3;border-left:2px solid var(--glass);pointer-events:none;animation:stile 1.9s 1s cubic-bezier(.72,0,.16,1) both}
 @keyframes slide-open{from{clip-path:inset(0)}to{clip-path:inset(0 0 0 100%)}}
@@ -125,7 +126,9 @@ button,input,select,textarea{font:inherit;color:inherit}
 .hero h1 em{display:block;margin-top:.62em;font-style:normal;font-size:clamp(20px,2vw,32px);font-weight:400;letter-spacing:-.01em;line-height:1.25;text-wrap:balance}
 .hero p{margin-top:10px;color:#d5e0e4;font-size:clamp(16px,1.15vw,18px)}
 .cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:clamp(22px,2.4vw,34px)}
-.ill{position:absolute;z-index:5;right:0;bottom:0;padding:5px 10px;background:rgba(27,35,39,.78);color:#dfe8eb;font-size:12.5px;line-height:1.3}
+
+.vp{position:absolute;z-index:5;right:0;bottom:0;min-height:40px;padding:0 16px;border:0;background:rgba(27,35,39,.82);color:#fff;font-size:13.5px;cursor:pointer}
+@media(hover:hover){.vp:hover{background:#fff;color:var(--ink)}}
 
 /* Trust */
 .trust{border-bottom:1px solid var(--line)}
@@ -154,7 +157,6 @@ button,input,select,textarea{font:inherit;color:inherit}
 .roles .more p{padding-top:12px;color:#dde6e9}
 .roles .more .cta{margin-top:18px;gap:10px;padding:2px}
 .roles .more .btn{min-height:50px;padding:8px 22px}
-.roles .ill{inset:0 0 auto auto}
 .also{display:flex;flex-wrap:wrap;gap:4px 14px;margin-top:20px;font-size:16px}
 
 /* Projects: drawing sheets with an empty title block */
@@ -163,16 +165,15 @@ button,input,select,textarea{font:inherit;color:inherit}
 .chips button[aria-pressed=true]{background:var(--ink);border-color:var(--ink);color:#fff}
 @media(hover:hover){.chips button:not([aria-pressed=true]):hover{border-color:var(--ink)}}
 .pjs{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(28px,3vw,48px) clamp(18px,2vw,32px)}
-.pj figure{position:relative;border:1px solid var(--line);background:var(--paper)}
-.pj svg{width:100%}
-.pj figcaption{padding:0 14px 12px;font-size:13.5px;line-height:1.3;color:var(--mute)}
+.pj img{width:100%;aspect-ratio:4/3;object-fit:cover;background:var(--paper)}
 .pj .t{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:0 14px;padding-block:14px 12px}
 .pj .t p{font-size:14.5px;color:var(--mute)}
 .pj dl{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--line)}
 .pj dl div{padding:8px 0;border-bottom:1px solid var(--line);font-size:14px;line-height:1.35}
 .pj dl div:nth-child(even){padding-left:14px;border-left:1px solid var(--line)}
 .pj dt{color:var(--mute)}
-.pj dd{position:relative;min-height:20px;margin-right:14px;background:linear-gradient(90deg,#b4c0c4 50%,transparent 0) 0 78%/7px 1px repeat-x}
+.pj dd{font-size:15px}
+.none{padding:26px 0}
 .el{fill:none;stroke:var(--ink);stroke-width:1.5;stroke-linecap:square}
 .el .g{fill:var(--glass);fill-opacity:.34;stroke:none}
 .el .l{stroke-width:1;stroke:#7d8b91}
@@ -194,22 +195,22 @@ button,input,select,textarea{font:inherit;color:inherit}
 
 /* Process: sketch, drawing, building */
 .proc{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(28px,5vw,88px);align-items:center}
-.stage{position:relative;aspect-ratio:3/2;overflow:hidden;background:#f7f8f6}
+.stage{position:relative;aspect-ratio:4/3;overflow:hidden;background:#f7f8f6}
 .stage>*{position:absolute;inset:0;width:100%;height:100%}
 .stage img{object-fit:cover}
 .stage .cv{background:#181f23}
 .js .stage .cv,.js .stage img{clip-path:inset(0 100% 0 0);transition:clip-path 1.3s cubic-bezier(.72,0,.16,1)}
 .js .stage[data-step="2"] .cv,.js .stage[data-step="3"] .cv,.js .stage[data-step="3"] img{clip-path:inset(0)}
-.stage .ill{inset:auto 0 0 auto;width:auto;height:auto}
-.sk path{fill:none;stroke:#1a93ab;stroke-width:4.5;stroke-linecap:round;stroke-linejoin:round;opacity:.85}
+.cap{margin-top:10px;font-size:14px;color:var(--mute)}
+.sk path{fill:none;stroke:#1a93ab;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round;opacity:.85}
 .js .sk path{stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 1.8s ease-in-out}
 .js .stage[data-step] .sk path{stroke-dashoffset:0}
-.cv path{fill:none;stroke:#e6eff2;stroke-width:3}
-.cv .fr{stroke:var(--glass);stroke-width:4}
-.cv .dm{stroke:var(--cyan);stroke-width:2.5}
+.cv path{fill:none;stroke:#e6eff2;stroke-width:1.5}
+.cv .fr{stroke:var(--glass);stroke-width:2.2}
+.cv .dm{stroke:var(--cyan);stroke-width:1.5}
 .cv .gl{fill:var(--glass);fill-opacity:.13;stroke:none}
-.cv text{fill:var(--glass);font:400 38px var(--f)}
-.cv circle{fill:#181f23;stroke:var(--glass);stroke-width:3}
+.cv text{fill:var(--glass);font:400 20px var(--f)}
+.cv circle{fill:#181f23;stroke:var(--glass);stroke-width:1.6}
 .step{display:grid;grid-template-columns:auto 1fr;gap:4px 20px;width:100%;padding:22px 0;border:0;border-top:1px solid var(--line);background:none;text-align:left;cursor:pointer;position:relative}
 .step::before{content:"";position:absolute;top:-1px;left:0;width:100%;height:2px;background:var(--cyan);transform:scaleX(0);transform-origin:0 0;transition:transform .9s var(--ease)}
 .step[aria-current=step]::before{transform:none}
@@ -220,7 +221,7 @@ button,input,select,textarea{font:inherit;color:inherit}
 /* Why */
 .why{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);background:var(--paper)}
 .why figure{position:relative;min-height:560px}
-.why figure img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:34% 50%}
+.why figure img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:8% 60%}
 .why .r{padding:clamp(52px,6.4vw,112px) var(--pad);max-width:820px}
 .why dl{margin-top:clamp(26px,3vw,46px)}
 .why dl div{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:4px 24px;padding:17px 0;border-top:1px solid var(--line)}
@@ -248,6 +249,7 @@ button,input,select,textarea{font:inherit;color:inherit}
 .sched input:checked{background:var(--glass);border-color:var(--glass)}
 .sched input:checked::after{transform:rotate(-45deg)}
 .sched label span{font-size:15.5px;color:#d5e0e4}
+.swipe{display:none}
 .req{display:flex;flex-wrap:wrap;align-items:center;gap:14px 28px;margin-top:28px}
 .req p{color:#b9c6cb;font-size:15.5px}
 
@@ -332,8 +334,8 @@ form{display:grid;grid-template-columns:1fr 1fr;gap:18px}
   .hd .tel,.hd .wrap>.btn{display:none}
   .burger{font-size:17px}
   .hero{min-height:calc(100svh - var(--hd) - 34px - 64px)}
-  .hero>img{object-position:78% 40%}
-  .hero::before{background:linear-gradient(to top,rgba(13,19,22,.94) 0,rgba(13,19,22,.78) 36%,rgba(13,19,22,0) 74%)}
+  .hero>img,.hero>video{object-position:45% 50%}
+  .hero::before{background:linear-gradient(to top,rgba(13,19,22,.94) 0,rgba(13,19,22,.78) 36%,rgba(13,19,22,0) 74%),linear-gradient(rgba(13,19,22,.22),rgba(13,19,22,.22))}
   .hero .cta .btn{flex:1 1 0;padding-inline:14px}
   .hero .wrap{padding-bottom:40px}
   .sec{padding-block:48px}
@@ -343,7 +345,6 @@ form{display:grid;grid-template-columns:1fr 1fr;gap:18px}
   .roles li,.roles li.on{flex:none;height:76px;transition:height .7s var(--ease)}
   .roles li.on{height:352px}
   html:not(.js) .roles li{height:352px}
-  .roles li:not(.on) .ill{display:none}
   .roles li::after{background:linear-gradient(to top,rgba(13,19,22,.95) 34%,rgba(13,19,22,.78) 66%,rgba(13,19,22,.12) 100%)}
   .roles .in{padding:0 18px 22px}
   .roles li:not(.on) .in{padding-bottom:24px}
@@ -353,7 +354,6 @@ form{display:grid;grid-template-columns:1fr 1fr;gap:18px}
   .drift::-webkit-scrollbar{display:none}
   .js .drift>li{flex:none}
   .js .pjs>li{width:min(78vw,330px)}
-  .pj figcaption{min-height:48px}
   .pj .t{flex-direction:column;gap:2px}
   .chips{flex-wrap:nowrap;margin-inline:calc(var(--pad)*-1);padding-inline:var(--pad);overflow-x:auto;scrollbar-width:none}
   .chips button{flex:none;padding:0 9px;font-size:15px}
@@ -366,7 +366,8 @@ form{display:grid;grid-template-columns:1fr 1fr;gap:18px}
   .under{margin-top:18px}
   .under p{display:none}
   .under .btn{width:100%}
-  .stage{aspect-ratio:1/1;margin-inline:calc(var(--pad)*-1)}
+  .stage{margin-inline:calc(var(--pad)*-1)}
+  .cv text{font-size:32px}
   .step{padding:15px 0;gap:2px 16px}
   .step b{font-size:36px;min-width:26px}
   .step strong{font-size:19px}
@@ -379,13 +380,16 @@ form{display:grid;grid-template-columns:1fr 1fr;gap:18px}
   .qg{gap:24px}
   .contact{margin-top:16px}
   .contact a+a{display:none}
-  .sched thead th{padding-right:6px;font-size:12.5px}
-  .sched thead th:first-child{width:33%}.sched thead th:nth-child(n+2){width:auto}
-  .sched td,.sched tbody th{padding-right:6px;height:52px}
+  .swipe{display:block;margin:-10px 0 14px;font-size:15px;color:#b9c6cb}
+  .tscroll{margin-inline:calc(var(--pad)*-1);overflow-x:auto;overscroll-behavior-x:contain}
+  .sched{width:auto;min-width:100%}
+  .sched col,.sched thead th{width:auto!important}
+  .sched th,.sched td{white-space:nowrap}
+  .sched thead th,.sched td{padding-right:26px!important}
+  .sched tr>:first-child{position:sticky;left:0;z-index:1;padding-left:var(--pad);padding-right:20px!important;background:var(--ink)}
+  .sched tr>:last-child{padding-right:var(--pad)!important}
   .sched tbody th{font-size:17px;font-weight:400}
-  .sched td a{font-size:15px}
-  .sched label span{display:none}
-  .sched label{min-width:44px}
+  .sched{table-layout:auto}
   .req .btn{width:100%}
   .says{border-top:0}
   .js .says>li{width:min(82vw,340px)}
@@ -412,7 +416,7 @@ form{display:grid;grid-template-columns:1fr 1fr;gap:18px}
   .dock a+a{background:var(--glass);color:var(--ink)}
   .dock.off{transform:translateY(110%)}
 }
-@media(max-width:350px){.hero .cta .btn{flex-basis:100%}.block img{height:66px}.block>div:nth-child(2){padding-left:12px}.sched thead th{font-size:11.5px}}
+@media(max-width:350px){.hero .cta .btn{flex-basis:100%}.block img{height:66px}.block>div:nth-child(2){padding-left:12px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important}.cad,.stile{display:none}}
 @media print{.dock,.hd{position:static}.cad,.stile{display:none}}
 </style>
@@ -440,17 +444,21 @@ form{display:grid;grid-template-columns:1fr 1fr;gap:18px}
 </div></header>
 
 <main>
-<!-- HERO -->
+<!-- HERO. Crystal Box brand video (same footage as the current splash page), compressed, no sound, loop starts on the window shot. -->
 <section class="hero" id="top">
-  <img src="img/hero.webp" width="1920" height="1280" fetchpriority="high" alt="Illustrative image: modern home with floor-to-ceiling sliding glass around a pool">
-  <img class="cad" src="img/hero-drawing.webp" width="1600" height="1067" alt="">
+  <video autoplay muted loop playsinline preload="metadata" poster="img/hero-poster.webp" width="1600" height="900" tabindex="-1" aria-hidden="true">
+    <source media="(prefers-reduced-motion:no-preference) and (max-width:860px)" src="video/hero-mobile.mp4" type="video/mp4">
+    <source media="(prefers-reduced-motion:no-preference) and (min-width:861px)" src="video/hero.mp4" type="video/mp4">
+    <source media="(prefers-reduced-motion:no-preference) and (min-width:861px)" src="https://res.cloudinary.com/drfdc2oce/video/upload/v1774279258/Crystal-Box-Windows-Doors-About-Us-1_dnqgua.mp4" type="video/mp4">
+  </video>
+  <img class="cad" src="img/hero-drawing.webp" width="1600" height="900" alt="">
   <span class="stile"></span>
   <div class="wrap">
     <h1>Where vision <br>becomes impact <em>Impact Windows and Doors. Custom. Engineered. Installed.</em></h1>
     <p>Serving developers, architects and contractors across South Florida.</p>
     <div class="cta"><a class="btn" href="#quote">Get a Quote</a><a class="btn line" href="#projects">View Projects</a></div>
   </div>
-  <span class="ill">Illustrative image</span>
+  <button class="vp" type="button" hidden>Pause video</button>
 </section>
 
 <!-- TRUST -->
@@ -466,27 +474,26 @@ form{display:grid;grid-template-columns:1fr 1fr;gap:18px}
 <section class="sec" id="professionals"><div class="wrap">
   <div class="head"><h2>Who we work with</h2><p class="lede opt">We collaborate closely with architects, builders, and discerning homeowners to deliver custom impact solutions tailored to modern architecture.</p></div>
   <ul class="roles">
-    <li class="on"><img src="img/role-architects.webp" width="900" height="815" loading="lazy" alt=""><div class="in">
+    <li class="on"><img src="img/role-architects.webp" width="900" height="810" loading="lazy" alt=""><div class="in">
       <h3><button type="button" aria-expanded="true" aria-controls="r1">Architects</button></h3>
       <div class="more" id="r1"><div><p>Your design intent, preserved. Every opening is designed to your dimensions and specifications, with specs and drawings support.</p><div class="cta"><a class="btn" href="#quote" data-role="Architect">Get a Quote as an Architect</a></div></div></div>
-    </div><span class="ill">Illustrative image</span></li>
+    </div></li>
     <li><img src="img/role-developers.webp" width="900" height="810" loading="lazy" alt=""><div class="in">
       <h3><button type="button" aria-expanded="false" aria-controls="r2">Developers</button></h3>
       <div class="more" id="r2"><div><p>Costs optimized from the early stages, with manufacturing and installation coordinated around your project schedule.</p><div class="cta"><a class="btn" href="#quote" data-role="Developer">Get a Quote as a Developer</a></div></div></div>
-    </div><span class="ill">Illustrative image</span></li>
+    </div></li>
     <li><img src="img/role-builders.webp" width="900" height="810" loading="lazy" alt=""><div class="in">
       <h3><button type="button" aria-expanded="false" aria-controls="r3">General Contractors &amp; Builders</button></h3>
       <div class="more" id="r3"><div><p>One partner from takeoff to install, so windows and doors are one conversation on your job.</p><div class="cta"><a class="btn" href="#quote" data-role="General Contractor">Contractor quote</a><a class="btn line" href="#quote" data-role="Builder">Builder quote</a></div></div></div>
-    </div><span class="ill">Illustrative image</span></li>
+    </div></li>
     <li><img src="img/role-homeowners.webp" width="900" height="810" loading="lazy" alt=""><div class="in">
       <h3><button type="button" aria-expanded="false" aria-controls="r4">Homeowners &amp; Designers</button></h3>
       <div class="more" id="r4"><div><p>Clean lines and precise proportions for custom homes, with installation included.</p><div class="cta"><a class="btn" href="#quote" data-role="Homeowner">Homeowner quote</a><a class="btn line" href="#quote" data-role="Interior Designer">Designer quote</a></div></div></div>
-    </div><span class="ill">Illustrative image</span></li>
+    </div></li>
   </ul>
-  <p class="also"><span>We also work with condominium associations and property managers replacing windows.</span><span class="ph">[Pending confirmation by Crystal Box]</span></p>
 </div></section>
 
-<!-- PROJECTS. To add a real photo: replace the card's <svg> with <img src="img/casa-bahia.webp" alt="...">, delete the figcaption and fill the dd fields. -->
+<!-- PROJECTS. Photos from crystalboxgroup.com/projects/. Category only where the same photo appears in that page's Commercial or Residential video. To add data: fill a <dd> and remove "hidden" from its <div> and from the <dl>. -->
 <section class="sec" id="projects" style="padding-top:0;scroll-margin-top:32px"><div class="wrap">
   <div class="head"><h2>Raising the standard in every project</h2>
     <div class="chips" role="group" aria-label="Filter projects">
@@ -498,35 +505,36 @@ form{display:grid;grid-template-columns:1fr 1fr;gap:18px}
   </div>
   <p class="sr" id="count" role="status"></p>
   <ul class="pjs drift">
-    <li class="pj" data-c="com mix"><figure><svg class="el draw" viewBox="0 0 400 240" aria-hidden="true"><rect class="g" x="122" y="30" width="156" height="136"/><path class="l" pathLength="1" d="M20 206H380"/><path pathLength="1" d="M110 206V22H290V206M110 166H290M110 132H290M110 98H290M110 64H290M110 30H290"/><path class="l" pathLength="1" d="M146 30V166M182 30V166M218 30V166M254 30V166M94 64H110M94 98H110M94 132H110M94 64V52H110M94 98V86H110M94 132V120H110M290 64H306V52H290M290 98H306V86H290M290 132H306V120H290M124 206V176H276V206M200 176V206M162 176V206M238 176V206"/></svg><figcaption>Project photo — 123 NoMi Building, to be supplied</figcaption></figure>
-      <div class="t"><h3>123 NoMi Building</h3><p>Category to be confirmed</p></div>
-      <dl><div><dt>Location</dt><dd><span class="sr">To be supplied</span></dd></div><div><dt>Scope</dt><dd><span class="sr">To be supplied</span></dd></div><div><dt>Developer / architect</dt><dd><span class="sr">To be supplied</span></dd></div><div><dt>Products used</dt><dd><span class="sr">To be supplied</span></dd></div></dl></li>
-    <li class="pj" data-c="res"><figure><svg class="el draw" viewBox="0 0 400 240" aria-hidden="true"><rect class="g" x="84" y="104" width="96" height="42"/><rect class="g" x="206" y="104" width="110" height="102"/><path class="l" pathLength="1" d="M20 206H380"/><path pathLength="1" d="M66 206V92H334V206M44 92H356V78H44V92M66 152H196V206M196 92V206"/><path class="l" pathLength="1" d="M84 104H180V146H84ZM116 104V146M148 104V146M206 104H316V206M243 104V206M280 104V206M84 206V164H136V206M150 164H180V190H150Z"/></svg><figcaption>Project photo — 2905 Washington, to be supplied</figcaption></figure>
-      <div class="t"><h3>2905 Washington</h3><p>Category to be confirmed</p></div>
-      <dl><div><dt>Location</dt><dd><span class="sr">To be supplied</span></dd></div><div><dt>Scope</dt><dd><span class="sr">To be supplied</span></dd></div><div><dt>Developer / architect</dt><dd><span class="sr">To be supplied</span></dd></div><div><dt>Products used</dt><dd><span class="sr">To be supplied</span></dd></div></dl></li>
-    <li class="pj" data-c="res"><figure><svg class="el draw" viewBox="0 0 400 240" aria-hidden="true"><rect class="g" x="76" y="132" width="232" height="74"/><path class="l" pathLength="1" d="M20 206H380"/><path pathLength="1" d="M40 118H360V104H40ZM62 206V118M322 206V118M76 206V132H308V206M134 132V206M192 132V206M250 132V206"/><path class="l" pathLength="1" d="M76 166L92 150M84 172L96 160M210 166L226 150M218 172L230 160M336 206V118M350 206V118M344 206V150"/></svg><figcaption>Project photo — Casa Carrera, to be supplied</figcaption></figure>
-      <div class="t"><h3>Casa Carrera</h3><p>Residential, to be confirmed</p></div>
-      <dl><div><dt>Location</dt><dd><span class="sr">To be supplied</span></dd></div><div><dt>Scope</dt><dd><span class="sr">To be supplied</span></dd></div><div><dt>Developer / architect</dt><dd><span class="sr">To be supplied</span></dd></div><div><dt>Products used</dt><dd><span class="sr">To be supplied</span></dd></div></dl></li>
-    <li class="pj" data-c="res"><figure><svg class="el draw" viewBox="0 0 400 240" aria-hidden="true"><rect class="g" x="150" y="66" width="180" height="50"/><rect class="g" x="102" y="150" width="152" height="56"/><path class="l" pathLength="1" d="M20 206H380"/><path pathLength="1" d="M130 132V52H352V132H62V146H352M76 206V146M270 206V146M150 66H330V116H150ZM102 206V150H254V206"/><path class="l" pathLength="1" d="M195 66V116M240 66V116M285 66V116M140 206V150M178 206V150M216 206V150M62 132V116H130M62 124H130M352 146V206"/></svg><figcaption>Project photo — Casa Bahia, to be supplied</figcaption></figure>
-      <div class="t"><h3>Casa Bahia</h3><p>Residential, to be confirmed</p></div>
-      <dl><div><dt>Location</dt><dd><span class="sr">To be supplied</span></dd></div><div><dt>Scope</dt><dd><span class="sr">To be supplied</span></dd></div><div><dt>Developer / architect</dt><dd><span class="sr">To be supplied</span></dd></div><div><dt>Products used</dt><dd><span class="sr">To be supplied</span></dd></div></dl></li>
-    <li class="pj" data-c="res com mix"><figure><svg class="el draw" viewBox="0 0 400 240" aria-hidden="true"><rect class="g" x="120" y="52" width="160" height="154"/><path class="l" pathLength="1" d="M20 206H380"/><path pathLength="1" d="M120 206V52H280V206M112 206V44H288V206M200 52V206M120 104H280"/><path class="l" pathLength="1" d="M160 52V206M240 52V206M120 155H280M132 88L152 68M142 92L156 78M212 190L232 170M222 194L236 180M60 206V44M340 206V44"/></svg><figcaption>Project photo — La Finestra, to be supplied</figcaption></figure>
-      <div class="t"><h3>La Finestra</h3><p>Category to be confirmed</p></div>
-      <dl><div><dt>Location</dt><dd><span class="sr">To be supplied</span></dd></div><div><dt>Scope</dt><dd><span class="sr">To be supplied</span></dd></div><div><dt>Developer / architect</dt><dd><span class="sr">To be supplied</span></dd></div><div><dt>Products used</dt><dd><span class="sr">To be supplied</span></dd></div></dl></li>
-    <li class="pj" data-c="res"><figure><svg class="el draw" viewBox="0 0 400 240" aria-hidden="true"><rect class="g" x="72" y="86" width="84" height="104"/><rect class="g" x="250" y="136" width="88" height="70"/><path class="l" pathLength="1" d="M20 206H380"/><path pathLength="1" d="M52 206V68H176V206M176 98H232V206M176 98V84H232V98M232 120H356V206M196 206V116H222V206"/><path class="l" pathLength="1" d="M72 86H156V190H72ZM100 86V190M128 86V190M250 206V136H338V206M279 136V206M308 136V206M216 158V168M44 68H184M226 120H364"/></svg><figcaption>Project photo — Villa Camila, to be supplied</figcaption></figure>
-      <div class="t"><h3>Villa Camila</h3><p>Residential, to be confirmed</p></div>
-      <dl><div><dt>Location</dt><dd><span class="sr">To be supplied</span></dd></div><div><dt>Scope</dt><dd><span class="sr">To be supplied</span></dd></div><div><dt>Developer / architect</dt><dd><span class="sr">To be supplied</span></dd></div><div><dt>Products used</dt><dd><span class="sr">To be supplied</span></dd></div></dl></li>
-    <li class="pj" data-c="res"><figure><svg class="el draw" viewBox="0 0 400 240" aria-hidden="true"><path class="g" d="M130 206V104L200 62L270 104V206Z"/><path class="l" pathLength="1" d="M20 206H380"/><path pathLength="1" d="M90 206V114L200 44L310 114V206M76 124L200 44L324 124M130 206V104L200 62L270 104V206M130 140H270"/><path class="l" pathLength="1" d="M165 206V83M200 206V62M235 206V83M106 206V150M294 206V150M330 206V160H366V206"/></svg><figcaption>Project photo — Casa Estrella, to be supplied</figcaption></figure>
-      <div class="t"><h3>Casa Estrella</h3><p>Residential, to be confirmed</p></div>
-      <dl><div><dt>Location</dt><dd><span class="sr">To be supplied</span></dd></div><div><dt>Scope</dt><dd><span class="sr">To be supplied</span></dd></div><div><dt>Developer / architect</dt><dd><span class="sr">To be supplied</span></dd></div><div><dt>Products used</dt><dd><span class="sr">To be supplied</span></dd></div></dl></li>
-    <li class="pj" data-c="res"><figure><svg class="el draw" viewBox="0 0 400 240" aria-hidden="true"><rect class="g" x="96" y="100" width="188" height="20"/><rect class="g" x="96" y="136" width="188" height="70"/><path class="l" pathLength="1" d="M20 206H380"/><path pathLength="1" d="M54 90L330 72V86L54 104M78 206V102M302 206V88M96 136H284V206M96 206V136M96 100V120H284V90"/><path class="l" pathLength="1" d="M143 98V120M190 95V120M237 92V120M143 136V206M190 136V206M237 136V206M344 206C344 180 344 170 344 150M344 150C330 140 326 118 344 108C362 118 358 140 344 150"/></svg><figcaption>Project photo — Villa Escondida, to be supplied</figcaption></figure>
-      <div class="t"><h3>Villa Escondida</h3><p>Residential, to be confirmed</p></div>
-      <dl><div><dt>Location</dt><dd><span class="sr">To be supplied</span></dd></div><div><dt>Scope</dt><dd><span class="sr">To be supplied</span></dd></div><div><dt>Developer / architect</dt><dd><span class="sr">To be supplied</span></dd></div><div><dt>Products used</dt><dd><span class="sr">To be supplied</span></dd></div></dl></li>
-    <li class="pj" data-c="res"><figure><svg class="el draw" viewBox="0 0 400 240" aria-hidden="true"><path class="g" d="M42 96H78V136H42ZM96 96H132V136H96ZM150 96H186V136H150ZM204 96H240V136H204ZM258 96H294V136H258ZM312 96H348V136H312Z"/><path class="l" pathLength="1" d="M14 206H386"/><path pathLength="1" d="M33 206V80H87V206M87 206V72H141V206M141 206V80H195V206M195 206V72H249V206M249 206V80H303V206M303 206V72H357V206"/><path class="l" pathLength="1" d="M42 96H78V136H42ZM96 96H132V136H96ZM150 96H186V136H150ZM204 96H240V136H204ZM258 96H294V136H258ZM312 96H348V136H312ZM60 96V136M114 96V136M168 96V136M222 96V136M276 96V136M330 96V136M42 206V156H66V206M96 206V156H120V206M150 206V156H174V206M204 206V156H228V206M258 206V156H282V206M312 206V156H336V206"/></svg><figcaption>Project photo — Six Villas, to be supplied</figcaption></figure>
-      <div class="t"><h3>Six Villas</h3><p>Residential, to be confirmed</p></div>
-      <dl><div><dt>Location</dt><dd><span class="sr">To be supplied</span></dd></div><div><dt>Scope</dt><dd><span class="sr">To be supplied</span></dd></div><div><dt>Developer / architect</dt><dd><span class="sr">To be supplied</span></dd></div><div><dt>Products used</dt><dd><span class="sr">To be supplied</span></dd></div></dl></li>
+    <li class="pj" data-c="com"><figure><img src="img/project-123-nomi-building.webp" width="900" height="675" loading="lazy" alt="123 NoMi Building: four-level building with balconies and glass doors"></figure>
+      <div class="t"><h3>123 NoMi Building</h3><p>Commercial</p></div>
+      <dl hidden><div hidden><dt>Location</dt><dd></dd></div><div hidden><dt>Scope</dt><dd></dd></div><div hidden><dt>Developer / architect</dt><dd></dd></div><div hidden><dt>Products used</dt><dd></dd></div></dl></li>
+    <li class="pj" data-c="res"><figure><img src="img/project-2905-washington.webp" width="900" height="675" loading="lazy" alt="2905 Washington: terrace with floor-to-ceiling sliding doors"></figure>
+      <div class="t"><h3>2905 Washington</h3><p>Residential</p></div>
+      <dl hidden><div hidden><dt>Location</dt><dd></dd></div><div hidden><dt>Scope</dt><dd></dd></div><div hidden><dt>Developer / architect</dt><dd></dd></div><div hidden><dt>Products used</dt><dd></dd></div></dl></li>
+    <li class="pj" data-c="res"><figure><img src="img/project-casa-carrera.webp" width="900" height="675" loading="lazy" alt="Casa Carrera: entry courtyard with tall windows and a reflecting pool"></figure>
+      <div class="t"><h3>Casa Carrera</h3><p>Residential</p></div>
+      <dl hidden><div hidden><dt>Location</dt><dd></dd></div><div hidden><dt>Scope</dt><dd></dd></div><div hidden><dt>Developer / architect</dt><dd></dd></div><div hidden><dt>Products used</dt><dd></dd></div></dl></li>
+    <li class="pj" data-c="res"><figure><img src="img/project-casa-bahia.webp" width="900" height="675" loading="lazy" alt="Casa Bahia: white two-story home with large windows around a pool"></figure>
+      <div class="t"><h3>Casa Bahia</h3><p>Residential</p></div>
+      <dl hidden><div hidden><dt>Location</dt><dd></dd></div><div hidden><dt>Scope</dt><dd></dd></div><div hidden><dt>Developer / architect</dt><dd></dd></div><div hidden><dt>Products used</dt><dd></dd></div></dl></li>
+    <li class="pj" data-c=""><figure><img src="img/project-la-finestra.webp" width="900" height="675" loading="lazy" alt="La Finestra: entrance walkway over water with glass doors"></figure>
+      <div class="t"><h3>La Finestra</h3><p></p></div>
+      <dl hidden><div hidden><dt>Location</dt><dd></dd></div><div hidden><dt>Scope</dt><dd></dd></div><div hidden><dt>Developer / architect</dt><dd></dd></div><div hidden><dt>Products used</dt><dd></dd></div></dl></li>
+    <li class="pj" data-c="res"><figure><img src="img/project-villa-camila.webp" width="900" height="675" loading="lazy" alt="Villa Camila: waterfront home with a wall of windows above the dock"></figure>
+      <div class="t"><h3>Villa Camila</h3><p>Residential</p></div>
+      <dl hidden><div hidden><dt>Location</dt><dd></dd></div><div hidden><dt>Scope</dt><dd></dd></div><div hidden><dt>Developer / architect</dt><dd></dd></div><div hidden><dt>Products used</dt><dd></dd></div></dl></li>
+    <li class="pj" data-c="res"><figure><img src="img/project-casa-estrella.webp" width="900" height="675" loading="lazy" alt="Casa Estrella: waterfront home with open sliding glass at ground level"></figure>
+      <div class="t"><h3>Casa Estrella</h3><p>Residential</p></div>
+      <dl hidden><div hidden><dt>Location</dt><dd></dd></div><div hidden><dt>Scope</dt><dd></dd></div><div hidden><dt>Developer / architect</dt><dd></dd></div><div hidden><dt>Products used</dt><dd></dd></div></dl></li>
+    <li class="pj" data-c="res"><figure><img src="img/project-villa-escondida.webp" width="900" height="675" loading="lazy" alt="Villa Escondida: white home with floor-to-ceiling glass beside the pool"></figure>
+      <div class="t"><h3>Villa Escondida</h3><p>Residential</p></div>
+      <dl hidden><div hidden><dt>Location</dt><dd></dd></div><div hidden><dt>Scope</dt><dd></dd></div><div hidden><dt>Developer / architect</dt><dd></dd></div><div hidden><dt>Products used</dt><dd></dd></div></dl></li>
+    <li class="pj" data-c=""><figure><img src="img/project-six-villas.webp" width="900" height="675" loading="lazy" alt="Six Villas: white villas with large windows above the water"></figure>
+      <div class="t"><h3>Six Villas</h3><p></p></div>
+      <dl hidden><div hidden><dt>Location</dt><dd></dd></div><div hidden><dt>Scope</dt><dd></dd></div><div hidden><dt>Developer / architect</dt><dd></dd></div><div hidden><dt>Products used</dt><dd></dd></div></dl></li>
   </ul>
-  <p class="also ph">Photos and project data: to be supplied by Crystal Box.</p>
+  <p class="none" id="none" hidden>No project is listed under Mixed-use yet. <a class="txt" href="#quote" data-cat="Mixed-use">Get a Quote for a mixed-use project</a></p>
+  <p class="also ph" id="pjnote">Project details to be supplied by Crystal Box.</p>
 </div></section>
 
 <!-- PRODUCTS. Links point to the PDFs on the current site; file sizes measured there. -->
@@ -549,12 +557,11 @@ form{display:grid;grid-template-columns:1fr 1fr;gap:18px}
 <section class="sec" id="process"><div class="wrap">
   <div class="head"><h2>From first drawing to finished opening</h2></div>
   <div class="proc">
-    <div class="stage" id="stage" data-step="3">
-      <svg class="sk" viewBox="0 0 2000 1333" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><path pathLength="1" d="M-20 52C500 40 1400 58 2030 44"/><path pathLength="1" d="M468 20C462 400 470 800 464 1096M586 30C578 400 590 760 582 1090"/><path pathLength="1" d="M1428 26C1434 420 1422 800 1430 1092M1556 28C1562 500 1550 840 1558 1088"/><path pathLength="1" d="M580 322C860 312 1150 332 1430 318M612 300C606 600 618 880 610 1060M1390 296C1384 620 1396 860 1386 1064M590 1036C900 1028 1160 1044 1416 1032"/><path pathLength="1" d="M-20 1066C600 1058 1500 1074 2030 1060M-10 1100C700 1092 1400 1108 2020 1094"/><path pathLength="1" d="M0 330C160 322 320 336 474 326M1546 322C1680 314 1800 330 1940 318C1932 560 1944 800 1934 1040"/><path pathLength="1" d="M820 322C814 600 826 820 818 1040M1176 318C1182 560 1170 800 1178 1040M820 700L700 700M724 676L700 700L726 722M1178 700L1300 700M1274 676L1300 700L1276 724"/></svg>
-      <svg class="cv" viewBox="0 0 2000 1333" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><path class="gl" d="M645 336H800V1014H645ZM840 336H1162V1030H840ZM1200 336H1350V1014H1200ZM0 338H120V1020H0ZM137 338H308V1020H137ZM327 338H460V1020H327ZM1560 322H1922V1024H1560Z"/><path d="M0 45H2000M462 45V1064M580 45V1064M608 45V1036M1396 45V1036M1422 45V1060M1558 48V1064M1965 48V1036M0 1062H2000M0 1092H2000M580 1064L612 1036M1420 1060L1388 1034"/><path class="fr" d="M612 320H1388V1035H612ZM645 336H800V1014H645ZM812 336V1030M822 336V1030M838 336V1030M1162 336V1030M1176 336V1030M1188 336V1030M1200 336H1350V1014H1200ZM1362 336V1030M0 326H460V1030H0M120 326V1030M137 326V1030M308 326V1030M327 326V1030M1558 318H1925V1028H1558"/><path class="dm" d="M612 250V304M1388 250V304M612 262H1388M600 274L624 250M1376 274L1400 250M520 320H592M520 1035H592M532 320V1035M520 332L544 308M520 1047L544 1023M700 720L770 650M716 750L786 680M930 720L1000 650M946 750L1016 680M1250 720L1320 650"/><text x="1000" y="226" text-anchor="middle">Custom width</text><text x="506" y="690" text-anchor="middle" transform="rotate(-90 506 690)">Custom height</text><circle cx="722" cy="880" r="42"/><circle cx="1001" cy="880" r="42"/><circle cx="1275" cy="880" r="42"/><text x="722" y="893" text-anchor="middle">A</text><text x="1001" y="893" text-anchor="middle">B</text><text x="1275" y="893" text-anchor="middle">A</text></svg>
-      <img src="img/door.webp" width="1500" height="1000" loading="lazy" alt="Illustrative image: black-framed sliding glass doors open to a dining room">
-      <span class="ill">Illustrative image</span>
-    </div>
+    <div><div class="stage" id="stage" data-step="3">
+      <svg class="sk" viewBox="0 0 1000 750" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><path pathLength="1" d="M8 38C300 30 700 46 992 34"/><path pathLength="1" d="M20 18C27 250 13 480 24 694M964 16C957 240 972 500 961 700"/><path pathLength="1" d="M-10 662C300 655 700 672 1010 659"/><path pathLength="1" d="M284 26C278 240 290 460 281 676M706 24C713 240 700 470 711 678"/><path pathLength="1" d="M190 350C150 347 120 352 92 349M110 332L90 350L111 367M810 350C850 353 880 347 908 351M890 333L911 350L889 368"/><path pathLength="1" d="M332 -10C220 58 110 120 -12 192M262 -10C180 36 80 92 -12 142"/><path pathLength="1" d="M364 40C362 220 366 400 363 562M616 42C619 220 612 400 615 560"/><path pathLength="1" d="M362 642L449 461L546 458L601 571L708 573"/></svg>
+      <svg class="cv" viewBox="0 0 1000 750" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><path class="gl" d="M38 47H250V640H38ZM282 47H706V640H282ZM728 47H942V640H728Z"/><path d="M325 0L0 178M268 0L0 124M0 668H1000M364 47V560M440 47V452M574 47V452M613 47V558M364 560L440 462M613 558L545 458M362 640L448 460H546L598 572H706M418 213H575V253H418Z"/><path class="fr" d="M18 35H962V660H18ZM38 47H250V640H38ZM282 47V660M706 47V660M728 47H942V640H728Z"/><path class="dm" d="M18 688V722M962 688V722M18 704H962M10 712L26 696M954 712L970 696M648 47H672M648 640H672M660 47V640M652 55L668 39M652 648L668 632M100 250L160 190M112 262L172 202M800 250L860 190M812 262L872 202"/><text x="490" y="738" text-anchor="middle">Custom width</text><text x="648" y="345" text-anchor="middle" transform="rotate(-90 648 345)">Custom height</text><circle cx="144" cy="430" r="25"/><circle cx="494" cy="400" r="25"/><circle cx="835" cy="430" r="25"/><text x="144" y="437" text-anchor="middle">A</text><text x="494" y="407" text-anchor="middle">B</text><text x="835" y="437" text-anchor="middle">A</text></svg>
+      <img src="img/process-villa-escondida.webp" width="1000" height="750" loading="lazy" alt="Villa Escondida: sliding glass doors open to a courtyard pool">
+    </div><p class="cap">Villa Escondida. Drawings are illustrative.</p></div>
     <ol>
       <li><button class="step" type="button"><b>1</b><strong>Consult &amp; Define</strong><span>We align architectural vision with technical requirements and optimize costs.</span></button></li>
       <li><button class="step" type="button"><b>2</b><strong>Design &amp; Engineer</strong><span>Every system is custom-designed to precise dimensions and specifications.</span></button></li>
@@ -565,7 +572,7 @@ form{display:grid;grid-template-columns:1fr 1fr;gap:18px}
 
 <!-- WHY -->
 <section class="why" id="about">
-  <figure><img src="img/view.webp" width="1500" height="958" loading="lazy" alt="Illustrative image: sliding glass doors framing the ocean from inside a home"><span class="ill">Illustrative image</span></figure>
+  <figure><img src="img/about-team.webp" width="1100" height="1032" loading="lazy" alt="Crystal Box team reviewing a project on a tablet at a construction site"></figure>
   <div class="r">
     <h2>We believe luxury lives in the details.</h2>
     <dl>
@@ -581,11 +588,14 @@ form{display:grid;grid-template-columns:1fr 1fr;gap:18px}
 <!-- TECHNICAL RESOURCES -->
 <section class="sec dk" id="resources"><div class="wrap">
   <div class="head"><h2>Technical resources</h2><p class="lede">Open a brochure, or tick the documents your team needs and send the list with your project.</p></div>
+  <p class="swipe">Swipe sideways for spec sheets, approvals and CAD.</p>
+  <div class="tscroll" tabindex="0" role="region" aria-label="Technical documents by product line">
   <table class="sched">
     <caption class="sr">Documents available by product line</caption>
     <thead><tr><th scope="col">Product line</th><th scope="col">Brochure</th><th scope="col">Spec sheet</th><th scope="col">Product approval</th><th scope="col">CAD / shop drawings</th></tr></thead>
     <tbody id="sched"></tbody>
   </table>
+  </div>
   <noscript><p>Call or email us to request spec sheets, product approvals and CAD/shop drawings.</p></noscript>
   <div class="req"><a class="btn" id="reqdocs" href="#quote">Request CAD/shop drawings</a><p>Product approvals: [NOA # — to be supplied]. Spec sheets and CAD files: [to be supplied by Crystal Box].</p></div>
 </div></section>
@@ -596,7 +606,7 @@ form{display:grid;grid-template-columns:1fr 1fr;gap:18px}
   <ul class="says drift">
     <li><figure><blockquote>“I love that everything is custom and comes with installation so design is never affected.”</blockquote><figcaption><b>Joaquín Salvador</b>Architect, Ft. Lauderdale, FL</figcaption></figure></li>
     <li><figure><blockquote>“It’s refreshing to work with a company that pays attention to design and quality.”</blockquote><figcaption><b>Matthew D. Cope</b>Architect, Naples, FL</figcaption></figure></li>
-    <li><figure><blockquote>“The team is always there to answer questions…”</blockquote><figcaption><b>Ernesto Perez</b>General Contractor, Puerto Rico</figcaption></figure></li>
+    <li><figure><blockquote>“The team is always there to answer questions and help us make decisions during the quoting process so I can offer my clients the best quality and price to the homes they are building.”</blockquote><figcaption><b>Ernesto Perez</b>General Contractor, Puerto Rico</figcaption></figure></li>
   </ul>
 </div></section>
 
@@ -663,6 +673,18 @@ const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [..
 const still = matchMedia('(prefers-reduced-motion:reduce)').matches;
 const track = (event, data) => dataLayer.push({ event, ...data });
 
+/* ---- Hero video: stays still until the drawing has opened, rests off screen, off with reduced motion or Save-Data ---- */
+const hv = $('.hero video'), vp = $('.vp'); let byUser = false, onScreen = true, opened = false;
+if (still || navigator.connection?.saveData) { hv.removeAttribute('autoplay'); hv.replaceChildren(); hv.load(); }
+else {
+  const play = () => opened && onScreen && !byUser && hv.play().catch(() => { /* autoplay blocked: the poster stays */ });
+  hv.pause();
+  Promise.all($('.cad').getAnimations().map(a => a.finished)).finally(() => { opened = true; play(); });
+  hv.addEventListener('playing', () => { vp.hidden = false; if (!opened) hv.pause(); });
+  new IntersectionObserver(es => { onScreen = es[0].isIntersecting; onScreen ? play() : hv.pause(); }).observe(hv);
+  vp.addEventListener('click', () => { byUser = !byUser; vp.textContent = byUser ? 'Play video' : 'Pause video'; byUser ? hv.pause() : play(); });
+}
+
 /* ---- Tracking ---- */
 document.addEventListener('click', e => {
   const a = e.target.closest('a'); if (!a) return;
@@ -704,13 +726,17 @@ req.addEventListener('click', () => {
 /* ---- Role pre-selected from the tiles ---- */
 $$('[data-role]').forEach(a => a.addEventListener('click', () => { $('#role').value = a.dataset.role; clear($('#role')); }));
 
+$$('[data-cat]').forEach(a => a.addEventListener('click', () => { $('#category').value = a.dataset.cat; clear($('#category')); }));
+
 /* ---- Project filter ---- */
 $$('.chips button').forEach(b => b.addEventListener('click', () => {
   $$('.chips button').forEach(x => x.setAttribute('aria-pressed', x === b));
   const f = b.dataset.f, list = $$('.pj');
-  list.forEach(c => c.hidden = f !== 'all' && !c.dataset.c.split(' ').includes(f));
+  list.forEach(c => c.hidden = f !== 'all' && c.dataset.c !== f);
+  const n = list.filter(c => !c.hidden).length;
+  $('#none').hidden = n > 0; $('#pjnote').hidden = !n;
   $('.pjs').scrollLeft = 0;
-  $('#count').textContent = list.filter(c => !c.hidden).length + ' projects shown';
+  $('#count').textContent = n + ' projects shown';
 }));
 
 /* ---- Drawings draw themselves once ---- */
