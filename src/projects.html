@@ -1,0 +1,17 @@
+<!--{"title":"Projects | Crystal Box Group","desc":"Residential and commercial projects in South Florida with custom impact windows and doors by Crystal Box Group.","canon":"projects/","nav":"projects.html","end":true}-->
+<section class="top"><div class="wrap">
+  <h1>Raising the standard in every project</h1>
+  <div class="chips" role="group" aria-label="Filter projects">{{chips}}</div>
+  <p class="sr" id="count" role="status"></p>
+</div></section>
+<!-- Data lives in src/projects.json, taken from the project pages of crystalboxgroup.com/portfolio/. -->
+<section class="wrap">
+  <ul class="pjs">
+{{projects}}
+  </ul>
+</section>
+
+<section class="wrap reels" aria-label="Videos">
+  <figure><video controls playsinline preload="none" poster="img/reel-residential.webp" width="1280" height="720" aria-label="Residential Projects"><source src="video/residential.mp4" type="video/mp4"></video><figcaption>Residential Projects</figcaption></figure>
+  <figure><video controls playsinline preload="none" poster="img/reel-commercial.webp" width="1280" height="720" aria-label="Commercial Projects"><source src="video/commercial.mp4" type="video/mp4"></video><figcaption>Commercial Projects</figcaption></figure>
+</section>

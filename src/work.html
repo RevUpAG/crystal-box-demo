@@ -1,0 +1,16 @@
+<!--{"title":"Work With Us | Crystal Box Group","desc":"Work with Crystal Box Group in Miami. Send your resume.","canon":"work-with-us/","cls":"nodock"}-->
+<section class="top narrow"><div class="wrap">
+  <h1>Work With Us</h1>
+  <p>If you’re passionate about quality and want to grow with a team committed to excellence, we’d love to hear from you.</p>
+</div></section>
+<section class="wrap narrow">
+  <form novalidate data-event="work_submit">
+    <div class="f"><label for="name">Full name</label><input id="name" name="name" autocomplete="name" required aria-describedby="e-name"><p class="e" id="e-name"></p></div>
+    <div class="f"><label for="phone">Phone</label><input id="phone" name="phone" type="tel" autocomplete="tel" required aria-describedby="e-phone"><p class="e" id="e-phone"></p></div>
+    <div class="f w"><label for="email">Email</label><input id="email" name="email" type="email" autocomplete="email" required aria-describedby="e-email"><p class="e" id="e-email"></p></div>
+    <div class="f w"><label for="message">Message <i>(optional)</i></label><textarea id="message" name="message" rows="4"></textarea></div>
+    <div class="f w"><label for="resume">Resume</label><input id="resume" name="resume" type="file" accept=".pdf,.doc,.docx" required aria-describedby="e-resume"><p class="e" id="e-resume"></p></div>
+    {{send:Send my resume}}
+  </form>
+  <div class="sent" tabindex="-1" hidden><h2></h2><p></p></div>
+</section>

@@ -1,0 +1,30 @@
+<!--{"title":"Get a Quote | Crystal Box Group","desc":"Tell Crystal Box Group about your project and a specialist will contact you. Custom impact windows and doors in South Florida.","canon":"get-a-quote/","cls":"nodock"}-->
+<section class="top"><div class="wrap"><h1 data-es="Cotice su proyecto">Get a Quote</h1></div></section>
+<section class="wrap qg">
+  <div class="contact">
+    <p>A Crystal Box specialist will contact you to discuss your needs.</p>
+    <a href="tel:+13058774981" data-place="quote">+1 (305) 877-4981</a>
+    <a href="mailto:info@crystalboxgroup.com">info@crystalboxgroup.com</a>
+    <a href="https://www.google.com/maps/search/?api=1&amp;query=999+Brickell+Ave+Suite+560+Miami+FL+33131" target="_blank" rel="noopener">999 Brickell Ave, Suite 560<br>Miami, FL 33131</a>
+  </div>
+  <div>
+    <form id="form" novalidate data-event="quote_submit">
+      <fieldset class="f w"><legend>Project category</legend><div class="opts"><label><input type="radio" name="category" value="Residential" required><span>Residential</span></label><label><input type="radio" name="category" value="Commercial"><span>Commercial</span></label><label><input type="radio" name="category" value="Mixed-use"><span>Mixed-use</span></label></div><p class="e" id="e-category"></p></fieldset>
+      <fieldset class="f w"><legend>Project type</legend><div class="opts"><label><input type="radio" name="type" value="New construction" required><span>New construction</span></label><label><input type="radio" name="type" value="Renovation"><span>Renovation</span></label><label><input type="radio" name="type" value="Replacement"><span>Replacement</span></label></div><p class="e" id="e-type"></p></fieldset>
+      <div class="f"><label for="city">Project city</label><input id="city" name="city" autocomplete="address-level2" required aria-describedby="e-city"><p class="e" id="e-city"></p></div>
+      <div class="f"><label for="role">Your role</label><select id="role" name="role" required aria-describedby="e-role"><option value="">Select</option><option value="Homeowner">Homeowner</option><option value="Architect">Architect</option><option value="Builder">Builder</option><option value="General Contractor">General Contractor</option><option value="Developer">Developer</option><option value="Interior Designer">Interior Designer</option></select><p class="e" id="e-role"></p></div>
+      <div class="f w"><label for="name">Name</label><input id="name" name="name" autocomplete="name" required aria-describedby="e-name"><p class="e" id="e-name"></p></div>
+      <div class="f"><label for="email">Email</label><input id="email" name="email" type="email" autocomplete="email" required aria-describedby="e-email"><p class="e" id="e-email"></p></div>
+      <div class="f"><label for="phone">Phone</label><input id="phone" name="phone" type="tel" autocomplete="tel" required aria-describedby="e-phone"><p class="e" id="e-phone"></p></div>
+      <details class="w" id="more"><summary>Add plans and details (optional)</summary><div class="grid">
+        <div class="f"><label for="company">Company</label><input id="company" name="company" autocomplete="organization"></div>
+        <div class="f"><label for="timeline">Timeline</label><select id="timeline" name="timeline"><option value="">Select</option><option value="Immediate">Immediate</option><option value="1–3 months">1–3 months</option><option value="3–6 months">3–6 months</option><option value="6+ months">6+ months</option></select></div>
+        <div class="f w"><label for="openings">Number of openings</label><input id="openings" name="openings" type="number" inputmode="numeric" min="1"></div>
+        <div class="f w"><label for="plans">Plans</label><input id="plans" name="plans" type="file" multiple accept=".pdf,.dwg,.dxf,.zip,image/*"></div>
+        <div class="f w"><label for="message">Message</label><textarea id="message" name="message" rows="3"></textarea></div>
+      </div></details>
+      {{send:Get a Quote}}
+    </form>
+    <div class="sent" id="done" tabindex="-1" hidden><h2></h2><p></p><dl></dl></div>
+  </div>
+</section>
